@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <router-view class="routerView" />
   </div>
 </template>
 
@@ -11,13 +10,33 @@ export default {
 }
 </script>
 
-<style>
+<style lang='less'>
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.bg(@url,@size:100%100%){
+  background:@url no-repeat;
+  background-size:@size;
+}
+
+.ltwh(@l,@t,@w,@h){  //left top width height
+  left: @l;
+  top: @t;
+  width:@w;
+  height: @h;
+}
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  width: 3584px;
+  height: 640px;
+  .bg(url("./assets/img/app/bg.png"));
+
+  .routerView{
+    position:absolute;
+    .ltwh(0px, 0px, 100%, 100%);
+    z-index: 100;
+  }
 }
 </style>
