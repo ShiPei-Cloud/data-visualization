@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "create-keyframe-animation": "^0.1.0",
-    "echarts": "^5.0.1",
+    "echarts": "^4.9.0",
     "less": "^4.1.0",
     "less-loader": "^4.1.0",
     "vue": "^2.5.2",

@@ -15,7 +15,7 @@
                 :progress-inner-height=10
                 :max-number="barWidthAfterComputed"
                 progress-border-color="#00A9FF"
-                progress-inner-color="#00A9FF"
+                progress-inner-color="linear-gradient(90deg, #4968ED, #00A9FF)"
         ></v-progress-bar>
     </div>
 </template>

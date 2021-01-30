@@ -1,28 +1,28 @@
 <template>
-    <div class="Zmap"></div>
+  <div class="Zmap"></div>
 </template>
 <script>
 export default {
-    name:'Zmap',
-
-}
+  name: "Zmap",
+};
 </script>
 <style lang="less" scope>
-
-.ltwh(@l,@t,@w,@h){  //left top width height
+.ltwh(@l,@t,@w,@h) {
+  //left top width height
   left: @l;
   top: @t;
-  width:@w;
+  width: @w;
   height: @h;
 }
 
-.bg(@url,@size:100%100%){
-  background:@url no-repeat;
-  background-size:@size;
+.bg(@url,@size:100%100%) {
+  background: @url no-repeat;
+  background-size: @size;
 }
-    .Zmap{
-        position: absolute;
-        .ltwh(50px, 20px, 600px, 600px);
-        .bg(url("../../assets/img/components/EnterpriseData/maps/上海.png"))
-    }
+.Zmap {
+  position: absolute;
+  .ltwh(50px, 20px, 600px, 600px);
+  .bg(url("../../assets/img/components/EnterpriseData/maps/上海.png"));
+}
+
 </style>
