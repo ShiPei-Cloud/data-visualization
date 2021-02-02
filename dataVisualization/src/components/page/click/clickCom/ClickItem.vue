@@ -5,15 +5,38 @@
 import echarts from "echarts";
 
 export default {
-  name: "EachersZheXianTu",
+  name: "ClickItem",
   data() {
-    return {};
+    return {
+      number: [],
+      getData: []
+    };
+  },
+  props: {
+    ClickSuccessRate1: {
+      type: Array,
+      default: []
+    }
   },
   mounted() {
     this.drawLine();
   },
   methods: {
     drawLine() {
+      this.number = [];
+      this.ClickSuccessRate1.forEach(item => {
+        this.number.push(Number(item.surate).toFixed(2));
+      });
+
+      this.getData = [];
+      this.ClickSuccessRate1.forEach(item => {
+        if (item.bank == null) {
+          this.getData.push(item.area);
+        } else {
+          this.getData.push(item.bank);
+        }
+      });
+      // console.log(this.number)
       // 基于准备好的dom，初始化echarts实例
       let myChart1 = echarts.init(document.getElementById("myChart1"));
       // 绘制图表
@@ -28,24 +51,7 @@ export default {
           }
         },
         xAxis: {
-          data: [
-            "浦东新区",
-            "奉贤区",
-            "普陀区",
-            "长宁区",
-            "徐汇区",
-            "黄浦区",
-            "虹口区",
-            "金山区",
-            "静安区",
-            "松江区",
-            "闵行区",
-            "杨浦区",
-            "宝山区",
-            "崇明区",
-            "嘉定区",
-            "青浦区"
-          ],
+          data: this.getData,
           axisTick: { show: false },
           axisLine: { show: false },
           axisLabel: {
@@ -74,7 +80,7 @@ export default {
               "path://M0,10 L10,10 C5.5,10 5.5,5 5,0 C4.5,5 4.5,10 0,10 z",
             itemStyle: {
               opacity: 0.5,
-              
+
               normal: {
                 //这里是重点
                 color: function(params) {
@@ -116,24 +122,7 @@ export default {
                 opacity: 1
               }
             },
-            data: [
-              123,
-              160,
-              250,
-              180,
-              120,
-              90,
-              200,
-              100,
-              123,
-              60,
-              250,
-              180,
-              120,
-              90,
-              200,
-              100
-            ],
+            data: this.number,
             z: 16
           },
           {
@@ -146,6 +135,12 @@ export default {
           }
         ]
       });
+    }
+  },
+  watch: {
+    ClickSuccessRate1(newVal, oldVal) {
+      this.ClickSuccessRate1 = newVal;
+      this.drawLine();
     }
   }
 };

@@ -2,8 +2,8 @@
   <div class="zong">
 
     <Title class="zong_title" text='总拨打量 Total Dialing'></Title>
-    <ZongItem></ZongItem>
-    <In></In>
+    <ZongItem :TotalDialing1='TotalDialing1'></ZongItem>
+    <In :TotalDialing1='TotalDialing1'></In>
   </div>
 </template>
 <script>
@@ -15,6 +15,12 @@ export default {
   name: "Zong",
   data() {
     return {};
+  },
+  props: {
+    TotalDialing1: {
+      type: Array,
+      default: []
+    }
   },
   components: {
     ZongItem,

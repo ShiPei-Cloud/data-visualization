@@ -2,25 +2,29 @@
   <div class="yuE">
     <!-- <div class="title">涕延后收入</div> -->
     <Title text='贷款余额 Loan Balance' class="title"></Title>
-    <YuEItem></YuEItem>
- 
+    <YuEItem :LoanBalance='LoanBalance'></YuEItem>
+
   </div>
 
 </template>
 <script>
-
 import YuEItem from "@/components/page/yuE/yuECom/YuEItem";
 import Title from "@/components/page/title/Title";
-
 
 export default {
   name: "YuE",
   data() {
     return {};
   },
-  components:{
-      YuEItem,
-      Title
+  props: {
+    LoanBalance: {
+      type: Array,
+      default: []
+    }
+  },
+  components: {
+    YuEItem,
+    Title
   }
 };
 </script>
@@ -34,7 +38,7 @@ export default {
   /* border: 1px solid red; */
 }
 
-.title{
-      width: 600px;
+.title {
+  width: 600px;
 }
 </style>

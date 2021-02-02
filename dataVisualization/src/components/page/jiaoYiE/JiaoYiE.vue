@@ -2,7 +2,7 @@
   <div class="jiaoYiE">
     <!-- <div class="title">年累计交易额</div> -->
     <Title text='年累计交易额 Annual Cumulative Turnover'></Title>
-    <JiaoYiEItem></JiaoYiEItem>
+    <JiaoYiEItem :AnnualCumulativeTurnover='AnnualCumulativeTurnover'></JiaoYiEItem>
   </div>
 </template>
 <script>
@@ -13,9 +13,20 @@ export default {
   data() {
     return {};
   },
+  props: {
+    AnnualCumulativeTurnover: {
+      type: Array,
+      default: []
+    }
+  },
   components: {
     JiaoYiEItem,
     Title
+  },
+  watch: {
+    AnnualCumulativeTurnover(newVal, oldVal) {
+      this.AnnualCumulativeTurnover = newVal;
+    }
   }
 };
 </script>

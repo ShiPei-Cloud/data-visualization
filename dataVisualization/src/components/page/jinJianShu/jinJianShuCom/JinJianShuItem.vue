@@ -46,7 +46,7 @@ export default {
 
   computed: {
     heightPre() {
-      return (this.heightL * 100) / (this.heightL + 20) + "%";
+      return (this.heightL * 100) / (this.heightL + 4000) + "%";
     }
   }
 };

@@ -6,13 +6,39 @@ import echarts from "echarts";
 export default {
   name: "ZengSuItem",
   data() {
-    return {};
+    return {
+      indicator: [],
+      number: []
+    };
+  },
+  props: {
+    GrowthRate: {
+      type: Array,
+      default: []
+    }
   },
   mounted() {
-    this.drawLine();
+    // this.drawLine();
   },
   methods: {
     drawLine() {
+
+      this.number=[];
+      this.indicator=[];
+      this.GrowthRate.forEach((item, index) => {
+        if (item.bank == null) {
+          this.indicator.push({
+            name: item.area,
+            max: Number(item.growth) + 1
+          });
+        } else {
+          this.indicator.push({
+            name: item.bank,
+            max: Number(item.growth) + 1
+          });
+        }
+        this.number.push(Number(item.growth));
+      });
       // 基于准备好的dom，初始化echarts实例
       let myChart2 = echarts.init(document.getElementById("myChart2"));
       // 绘制图表
@@ -47,26 +73,7 @@ export default {
               padding: [3, 5]
             }
           },
-          indicator: [
-            { name: "浦东新区", max: 600 },
-            { name: "奉贤区", max: 600 },
-            { name: "普陀区 ", max: 600 },
-            { name: "长宁区", max: 600 },
-            { name: "徐汇区", max: 600 },
-            { name: "黄浦区", max: 600 },
-            { name: "虹口区", max: 600 },
-            { name: "金山区", max: 600 },
-            { name: "静安区 ", max: 600 },
-            { name: "松江区", max: 600 },
-            { name: "闵行区", max: 600 },
-            { name: "杨浦区", max: 600 },
-            { name: "宝山区", max: 600 },
-            { name: "崇明区", max: 600 },
-            { name: "嘉定区 ", max: 600 },
-            { name: "青浦区", max: 600 },
-            { name: "金山区", max: 600 },
-            { name: "卢湾区", max: 600 }
-          ],
+          indicator: this.indicator,
           splitLine: {
             lineStyle: {
               color: ["#00A9FF"],
@@ -90,27 +97,7 @@ export default {
             type: "radar",
             data: [
               {
-                value: [
-                  500,
-                  140,
-                  280,
-                  310,
-                  420,
-                  210,
-                  50,
-                  140,
-                  280,
-                  310,
-                  420,
-                  210,
-                  280,
-                  310,
-                  420,
-                  210,
-                  200,
-                  200
-                ],
-
+                value: this.number,
                 name: "增速 Growth Rate"
               }
             ],
@@ -147,6 +134,12 @@ export default {
           }
         ]
       });
+    }
+  },
+  watch: {
+    GrowthRate(newVal, oldVal) {
+      this.GrowthRate = newVal;
+      this.drawLine();
     }
   }
 };

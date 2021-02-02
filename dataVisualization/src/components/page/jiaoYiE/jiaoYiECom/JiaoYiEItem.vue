@@ -6,13 +6,33 @@ import echarts from "echarts";
 export default {
   name: "EachersZheXianTu",
   data() {
-    return {};
+    return {
+      xAxis: [],
+      number: []
+    };
+  },
+  props: {
+    AnnualCumulativeTurnover: {
+      type: Array,
+      default: []
+    }
   },
   mounted() {
     this.drawLine();
   },
   methods: {
     drawLine() {
+      this.xAxis = [];
+      this.number = [];
+      this.AnnualCumulativeTurnover.forEach((item, index) => {
+        if (item.bank == null) {
+          this.xAxis.push(item.area);
+          this.number.push(item.transaction);
+        } else {
+          this.xAxis.push(item.bank);
+          this.number.push(item.transaction);
+        }
+      });
       // 基于准备好的dom，初始化echarts实例
       let myChart = echarts.init(document.getElementById("myChart0"));
       // 绘制图表
@@ -21,23 +41,8 @@ export default {
         tooltip: {},
         //  backgroundColor: '#12cf96',
         xAxis: {
-          data: [
-            "奉贤区",
-            "普陀区",
-            "长宁区",
-            "徐汇区",
-            "黄浦区",
-            "虹口区",
-            "金山区",
-            "静安区",
-            "松江区",
-            "闵行区",
-            "杨浦区",
-            "宝山区",
-            "崇明区",
-            "嘉定区",
-            "青浦区"
-          ],
+          data: this.xAxis,
+
           axisLine: {
             lineStyle: {
               color: "#05BCF0"
@@ -48,15 +53,14 @@ export default {
             formatter: function(value) {
               return value.split("").join("\n");
             }
-          },
-        //   splitLine: {
-        //     // show: true,
-        //     lineStyle: {
-        //       color: ["#04BDFF"],
-        //       type:'dashed'
-        //     }
-        //   }
-         
+          }
+          //   splitLine: {
+          //     // show: true,
+          //     lineStyle: {
+          //       color: ["#04BDFF"],
+          //       type:'dashed'
+          //     }
+          //   }
         },
 
         yAxis: {
@@ -65,11 +69,11 @@ export default {
               color: "#05BCF0"
             }
           },
-           splitLine: {
+          splitLine: {
             // show: true,
             lineStyle: {
               color: ["#04BDFF"],
-              type:'dashed'
+              type: "dashed"
             }
           }
         },
@@ -77,47 +81,32 @@ export default {
           {
             name: "销量",
             type: "bar",
-            
-            data: [
-              5,
-              20,
-              36,
-              10,
-              10,
-              300,
-              5,
-              20,
-              36,
-              10,
-              10,
-              20,
-              5,
-              20,
-              36,
-              10,
-              10,
-              20
-            ],
+
+            data: this.number,
             barWidth: 10,
             itemStyle: {
               normal: {
                 // color: "linear-gradient(0deg, #0080FF 0%, #05BEF0 100%)",
-                color:'#05B8F2'
-                
-                
+                color: "#05B8F2"
               }
             }
           }
         ]
       });
     }
+  },
+  watch: {
+    AnnualCumulativeTurnover(newVal, oldVal) {
+      this.AnnualCumulativeTurnover = newVal;
+      this.drawLine();
+    }
   }
 };
 </script>
 <style scoped>
-#myChart0{
-    position: absolute;
-    top: 30px;
-    left: -20px;
+#myChart0 {
+  position: absolute;
+  top: 30px;
+  left: -20px;
 }
 </style>

@@ -1,27 +1,29 @@
 <template>
   <div class="data">
     <Title></Title>
-    <Map></Map>
+    <Map @quData='getQuName'></Map>
     <div class="left">
-      <div class="fenQiTong" @click='shift(1)' :class="active==1?'active':''">分期通</div>
-      <div class="eFenGou" @click='shift(2)' :class="active==2?'active':''">一分购</div>
+      <div class="eFenGou" @click='shift(1)' :class="active==1?'active':''">一分购</div>
 
-      <Zong></Zong>
-      <Success class="data_success"></Success>
+      <div class="fenQiTong" @click='shift(2)' :class="active==2?'active':''">分期通</div>
+
+      <Zong :TotalDialing1='active==1?TotalDialing1:TotalDialing'></Zong>
+      <Success class="data_success" :SuccessfulDialing1='active==1?SuccessfulDialing1:SuccessfulDialing'></Success>
     </div>
     <div class="middle">
       <div class="middle_left">
-        <ShouRu></ShouRu>
-        <Click></Click>
+
+        <Click :ClickSuccessRate1='active==1?ClickSuccessRate1:ClickSuccessRate'></Click>
+        <ShouRu :revenues='revenues'></ShouRu>
       </div>
       <div class="middle_right">
-        <JinJianShu></JinJianShu>
-        <JiaoYiE></JiaoYiE>
+        <JinJianShu :YearsAccumulative='YearsAccumulative'></JinJianShu>
+        <JiaoYiE :AnnualCumulativeTurnover='AnnualCumulativeTurnover'></JiaoYiE>
       </div>
     </div>
     <div class="right">
-      <ZengSu></ZengSu>
-      <YuE></YuE>
+      <ZengSu :GrowthRate='GrowthRate'></ZengSu>
+      <YuE :LoanBalance='LoanBalance'></YuE>
     </div>
   </div>
 </template>
@@ -41,8 +43,36 @@ export default {
   name: "Data",
   data() {
     return {
-      active: 0
+      active: 1,
+      TotalDialing1: [],
+      AnnualCumulativeTurnover: [],
+      ClickSuccessRate: [],
+      ClickSuccessRate1: [],
+      GrowthRate: [],
+      LoanBalance: [],
+      SuccessfulDialing: [],
+      SuccessfulDialing1: [],
+      TotalDialing: [],
+
+      YearsAccumulative: [],
+      revenues: []
     };
+  },
+  mounted() {
+    this.$axios.get("http://192.168.1.136:8060/42floor/bank").then(res => {
+      console.log(res.data.YearsAccumulative);
+      this.AnnualCumulativeTurnover = res.data.AnnualCumulativeTurnover;
+      this.ClickSuccessRate = res.data.ClickSuccessRate;
+      this.ClickSuccessRate1 = res.data.ClickSuccessRate1;
+      this.GrowthRate = res.data.GrowthRate;
+      this.LoanBalance = res.data.LoanBalance;
+      this.SuccessfulDialing = res.data.SuccessfulDialing;
+      this.SuccessfulDialing1 = res.data.SuccessfulDialing1;
+      this.TotalDialing = res.data.TotalDialing;
+      this.TotalDialing1 = res.data.TotalDialing1;
+      this.YearsAccumulative = res.data.YearsAccumulative;
+      this.revenues = res.data.revenues;
+    });
   },
   components: {
     Title,
@@ -58,8 +88,28 @@ export default {
   },
   methods: {
     shift(index) {
-      this.active=index;
-      console.log(index)
+      // this.$destroy('Success');
+      this.active = index;
+      console.log(index);
+    },
+    getQuName(name) {
+      this.$axios
+        .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
+        .then(res => {
+            console.log(res.data.YearsAccumulative)
+          console.log(res.data.AnnualCumulativeTurnover)
+          this.AnnualCumulativeTurnover = res.data.AnnualCumulativeTurnover;
+          this.ClickSuccessRate = res.data.ClickSuccessRate;
+          this.ClickSuccessRate1 = res.data.ClickSuccessRate1;
+          this.GrowthRate = res.data.GrowthRate;
+          this.LoanBalance = res.data.LoanBalance;
+          this.SuccessfulDialing = res.data.SuccessfulDialing;
+          this.SuccessfulDialing1 = res.data.SuccessfulDialing1;
+          this.TotalDialing = res.data.TotalDialing;
+          this.TotalDialing1 = res.data.TotalDialing1;
+          this.YearsAccumulative = res.data.YearsAccumulative;
+          this.revenues = res.data.revenues;
+        });
     }
   }
 };
@@ -70,6 +120,9 @@ export default {
   width: 3584px !important;
   height: 640px !important;
   background: url("../assets/dataImage/bg.png") center no-repeat;
+
+  /* 修改字体 */
+  font-family: monospace !important;
 }
 
 /* .data_success{

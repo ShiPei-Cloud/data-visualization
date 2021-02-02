@@ -6,36 +6,39 @@ import echarts from "echarts";
 export default {
   name: "YuEItem",
   data() {
-    return {};
+    return {
+      area: [],
+      number: []
+    };
+  },
+  props: {
+    LoanBalance: {
+      type: Array,
+      default: []
+    }
   },
   mounted() {
-    this.drawLine();
+    // this.drawLine();
   },
   methods: {
     drawLine() {
+      this.area=[];
+      this.number=[];
+      this.LoanBalance.forEach((item, index) => {
+        if (item.bank == null) {
+          this.area.push(item.area);
+        } else {
+          this.area.push(item.bank);
+        }
+        this.number.push(Number(item.loan));
+      });
       // 基于准备好的dom，初始化echarts实例
       let myChart3 = echarts.init(document.getElementById("myChart3"));
       // 绘制图表
       myChart3.setOption({
         xAxis: {
           type: "category",
-          data: [
-            "奉贤区",
-            "普陀区",
-            "长宁区",
-            "徐汇区",
-            "黄浦区",
-            "虹口区",
-            "金山区",
-            "静安区",
-            "松江区",
-            "闵行区",
-            "杨浦区",
-            "宝山区",
-            "崇明区",
-            "嘉定区",
-            "青浦区"
-          ],
+          data: this.area,
           axisLine: {
             lineStyle: {
               color: "#05BCF0"
@@ -64,23 +67,7 @@ export default {
         },
         series: [
           {
-            data: [
-              150,
-              230,
-              224,
-              218,
-              135,
-              147,
-              260,
-              150,
-              230,
-              224,
-              218,
-              135,
-              147,
-              260,
-              300
-            ],
+            data: this.number,
             type: "line",
             symbol: "circle", //设定为实心点  类型 ： 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'
             symbolSize: 6, //圆点大小
@@ -105,7 +92,6 @@ export default {
                 {
                   offset: 0,
                   color: "RGBA(0, 255, 0, 0.8)"
-                  
                 },
                 {
                   offset: 1,
@@ -116,6 +102,12 @@ export default {
           }
         ]
       });
+    }
+  },
+  watch: {
+    LoanBalance(newVal, oldVal) {
+      this.LoanBalance = newVal;
+      this.drawLine();
     }
   }
 };

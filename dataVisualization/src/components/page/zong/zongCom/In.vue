@@ -6,13 +6,32 @@ import echarts from "echarts";
 export default {
   name: "In",
   data() {
-    return {};
+    return {
+      getData: []
+    };
+  },
+  props: {
+    TotalDialing1: { type: Array, default: [] }
   },
   mounted() {
     this.drawLine();
   },
   methods: {
     drawLine() {
+      this.getData = [];
+      this.TotalDialing1.forEach(item => {
+        if (item.bank == null) {
+          this.getData.push({
+            value: 10,
+            name: item.area
+          });
+        } else {
+          this.getData.push({
+            value: 10,
+            name: item.bank
+          });
+        }
+      });
       // 基于准备好的dom，初始化echarts实例
       let myChart5 = echarts.init(document.getElementById("myChart5"));
       // 绘制图表
@@ -22,7 +41,24 @@ export default {
           show: false
         },
         toolbox: {},
-        color: ["#3884FC", "#FFB769", "#F9E264", "#FFB769", "#F5626E","#FBA998", "#BB60B1", "#AF87FE", "#B034E9", "#4F17CD","#171CCD", "#023A92", "#0F86B7", "#049CB1", "#26CCD8","#9DDDFA"], //手动设置每个图例的颜色
+        color: [
+          "#3884FC",
+          "#FFB769",
+          "#F9E264",
+          "#FFB769",
+          "#F5626E",
+          "#FBA998",
+          "#BB60B1",
+          "#AF87FE",
+          "#B034E9",
+          "#4F17CD",
+          "#171CCD",
+          "#023A92",
+          "#0F86B7",
+          "#049CB1",
+          "#26CCD8",
+          "#9DDDFA"
+        ], //手动设置每个图例的颜色
 
         series: [
           {
@@ -36,7 +72,9 @@ export default {
             },
 
             itemStyle: {},
-            data: [
+            data: 
+            // this.getData
+             [
               { value: 10, name: "浦东新区" },
               { value: 10, name: "奉贤区" },
               { value: 10, name: "普陀区" },
@@ -54,9 +92,6 @@ export default {
               { value: 10, name: "嘉定区" },
               { value: 10, name: "青浦区" },
               { value: 10, name: "青浦区" },
-              { value: 10, name: "闸北区" },
-
-              { value: 10, name: "卢湾区" }
             ]
             // emphasis: {
             //   label: {
@@ -71,6 +106,13 @@ export default {
           }
         ]
       });
+    }
+  },
+  watch: {
+    TotalDialing1(newVal, oldVal) {
+      this.TotalDialing1 = newVal;
+      // 数据变化之后，重新绘制图标数据
+      newVal && this.drawLine();
     }
   }
 };

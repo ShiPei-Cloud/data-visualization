@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import Echarts from "vue-echarts";
+import axios from 'axios'
+// 将axios绑定到全局Vue原型上
+Vue.prototype.$axios = axios
 
 // 手动引入 ECharts 各模块来减小打包体积
 import 'echarts/lib/chart/bar'
