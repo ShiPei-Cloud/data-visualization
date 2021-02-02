@@ -36,7 +36,8 @@ export default {
                 width:"auto",
                 color:this.color,
                 paddingLeft:"15px",
-                fontSize:"20px"
+                fontSize:"20px",
+                fontWeight:'700',
             },
             dataHead_EN_style:{
                 width:"auto",

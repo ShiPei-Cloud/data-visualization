@@ -45,11 +45,11 @@ export default {
           },
           series: {
             radius: [40, 80],
-            center: ["80%", "45%"],
+            center: ["80%", "50%"],
           },
           itemStyle: {
             borderWidth: 3, //设置border的宽度有多大
-            borderColor: "#042132",
+            borderColor: "#031325",
           },
         };
       },

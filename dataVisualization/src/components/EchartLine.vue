@@ -73,7 +73,6 @@ export default {
         keys.push(item[this.lineChartDataKey]);
         values.push(item[this.lineChartDataValue]);
       });
-      console.log(JSON.stringify({ keys, values }));
       return { keys, values };
     },
   },

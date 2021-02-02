@@ -187,7 +187,7 @@ export default {
                 },
               },
               axisLabel: {
-                fontSize: 13,
+                fontSize: 10,
                 rotate: 0,
               },
               axisTick: {
@@ -230,8 +230,8 @@ export default {
                   0,
                   1, //4个参数用于配置渐变色的起止位置, 这4个参数依次对应右/下/左/上四个方位. 而0 0 0 1则代表渐变色从正上方开始
                   [
-                    { offset: 0, color: "#0082FF" },
-                    { offset: 1, color: "#05BCF1" },
+                    { offset: 0, color: "rgba(0,130,255,0.7)" },
+                    { offset: 1, color: "rgba(5,188,241,0.7)" },
                   ] //数组, 用于配置颜色的渐变过程. 每一项为一个对象, 包含offset和color两个参数. offset的范围是0 ~ 1, 用于表示位置
                 ), //柱状图颜色
               },
@@ -256,11 +256,12 @@ export default {
               orient: "vertical",
               data: xAxisLineData_pie,
               textStyle: {
-                color: "#018DD8",
+                color: "#FFFFFF",
+                overflow:'break',
               },
-              itemHeight: 15,
-              itemWidth: 15,
-              itemGap: 16,
+              itemHeight: 13,
+              itemWidth: 40,
+              itemGap: 12,
             },
             //设置饼状图每个颜色块的颜色
             color: [

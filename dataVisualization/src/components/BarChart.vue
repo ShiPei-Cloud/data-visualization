@@ -6,8 +6,8 @@
         <v-progress-bar
                 v-for="item in barChartDataUse"
                 :key="item.houseStyle"
-                :progress-title="item.name"
-                :progressNumber="item.count"
+                :progress-title="item.detail"
+                :progressNumber="item.num"
                 number-color="#00A9FF"
                 title-color="#00A9FF"
                 title-align="center"
@@ -53,7 +53,7 @@
                 var barWidthBeforeComputed = this.barChartData
                 let dataNumberArr = [];
                 barWidthBeforeComputed.map((item)=>{
-                    dataNumberArr.push(item.count)
+                    dataNumberArr.push(item.num)
                 });
                 return this.bubble(dataNumberArr); //最大值
             }
