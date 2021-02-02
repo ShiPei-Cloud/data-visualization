@@ -4,6 +4,7 @@
     <Title text='点选成功率 Click Success Rate'></Title>
     <ClickItem :ClickSuccessRate1='ClickSuccessRate1'></ClickItem>
   </div>
+  
 </template>
 <script>
 import ClickItem from "@/components/page/click/clickCom/ClickItem";
