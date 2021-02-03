@@ -7,7 +7,11 @@
       <div class="grade_title">增速排名</div>
       <div class="grade_name" :style='grade_name_style' ref="element">
         <ZengSuPaiMing v-for=" (item,index) in paiMing" :key="index">
-          <div class="grade_name_item">{{index+1}}:{{item.area}}</div>
+          <div class="grade_name_item">
+            <div class="pan pan1">{{index+1}}</div>
+            <div class="pan pan2"></div>
+            <div class="pan pan3">{{item.area}}</div>
+          </div>
         </ZengSuPaiMing>
       </div>
     </div>
@@ -50,7 +54,7 @@ export default {
       this.GrowthRate.forEach(item => {
         if (item.bank == null) {
           this.paiMing.push({
-            area: item.area,
+            area: item.area.replace(/(^\s*)|(\s*$)/g, ""),
             growth: item.growth
           });
         } else {
@@ -104,6 +108,12 @@ export default {
 };
 </script>
 <style scoped>
+
+@font-face {
+  font-family: Gentium;
+  src: url("../../../assets/font/Furore-2.otf");
+}
+
 .zengSu {
   position: absolute;
   height: 300px;
@@ -167,9 +177,31 @@ export default {
 }
 
 .grade_name_item {
+  /* position: absolute; */
   width: 100%;
   height: 22px;
   line-height: 22px;
   text-align: left;
 }
+
+.pan {
+  display: inline-block;
+  height: 12px;
+  /* border: 1px solid red; */
+}
+.pan1{
+  width: 20px;
+  font-family: Gentium;
+  padding-left: 20px;
+  text-align: center;
+}
+.pan2{
+  width: 20px;
+  background:url("../../../assets/dataImage/FenGeXian.png") 50% 40% no-repeat;
+ 
+}
+.pan3{
+  width:120px;
+}
+
 </style>

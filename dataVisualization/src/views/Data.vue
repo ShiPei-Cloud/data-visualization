@@ -96,8 +96,8 @@ export default {
       this.$axios
         .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
         .then(res => {
-            console.log(res.data.YearsAccumulative)
-          console.log(res.data.AnnualCumulativeTurnover)
+          console.log(res.data.YearsAccumulative);
+          console.log(res.data.AnnualCumulativeTurnover);
           this.AnnualCumulativeTurnover = res.data.AnnualCumulativeTurnover;
           this.ClickSuccessRate = res.data.ClickSuccessRate;
           this.ClickSuccessRate1 = res.data.ClickSuccessRate1;
@@ -114,15 +114,16 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style scoped >
+
 .data {
   position: relative;
   width: 3584px !important;
   height: 640px !important;
   background: url("../assets/dataImage/bg.png") center no-repeat;
-
+  /* font-family: Gentium !important; */
   /* 修改字体 */
-  font-family: monospace !important;
+  /* font-family: mFont ; */
 }
 
 /* .data_success{

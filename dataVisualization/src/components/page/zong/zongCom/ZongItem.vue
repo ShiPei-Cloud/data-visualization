@@ -82,7 +82,7 @@ export default {
           {
             name: "",
             type: "pie",
-            radius: [40, 80],
+            radius: [60, 100],
             center: ["55%", "50%"],
             roseType: "area",
             itemStyle: {
@@ -93,7 +93,7 @@ export default {
             },
             emphasis: {
               label: {
-                show: true,
+                show: false,
                 textStyle: {
                   //图例文字的样式
                   color: "rgba(0, 169, 255, 1)", //文字颜色

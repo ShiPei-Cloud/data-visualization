@@ -13,6 +13,9 @@ export default {
 };
 </script>
 <style scoped>
+
+
+
 .title {
   position: absolute;
   left: 0;
@@ -21,6 +24,7 @@ export default {
   height: 100%;
   background: url("../../assets/dataImage/title.png") center no-repeat;
   color: aliceblue;
+  /* font-family:  mFont; */
 }
 
 .title_content {

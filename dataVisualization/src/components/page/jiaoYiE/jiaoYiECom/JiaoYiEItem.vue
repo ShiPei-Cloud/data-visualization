@@ -26,7 +26,7 @@ export default {
       this.number = [];
       this.AnnualCumulativeTurnover.forEach((item, index) => {
         if (item.bank == null) {
-          this.xAxis.push(item.area);
+          this.xAxis.push(item.area.replace(/(^\s*)|(\s*$)/g, ""));
           this.number.push(item.transaction);
         } else {
           this.xAxis.push(item.bank);
@@ -38,7 +38,13 @@ export default {
       // 绘制图表
       myChart.setOption({
         // title: { text: "在Vue中使用echarts", textStyle: { color: "#00FFFF" } },
-        tooltip: {},
+        tooltip: {
+       
+          formatter: function(params) {
+            // 鼠标移动，显示数据
+            // return params[0].name + ": " + params[0].value;
+          }
+        },
         //  backgroundColor: '#12cf96',
         xAxis: {
           data: this.xAxis,

@@ -26,7 +26,7 @@ export default {
       this.number=[];
       this.LoanBalance.forEach((item, index) => {
         if (item.bank == null) {
-          this.area.push(item.area);
+          this.area.push(item.area.replace(/(^\s*)|(\s*$)/g, ""));
         } else {
           this.area.push(item.bank);
         }
