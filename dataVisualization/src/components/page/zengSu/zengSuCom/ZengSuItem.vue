@@ -22,9 +22,8 @@ export default {
   },
   methods: {
     drawLine() {
-
-      this.number=[];
-      this.indicator=[];
+      this.number = [];
+      this.indicator = [];
       this.GrowthRate.forEach((item, index) => {
         if (item.bank == null) {
           this.indicator.push({
@@ -57,6 +56,10 @@ export default {
           ],
           textStyle: {
             color: "rgba(0, 169, 255, 1)"
+          },
+          formatter: function(params) {
+            // 鼠标移动，显示数据
+            // return params[0].name + ": " + params[0].value;
           }
         },
         legend: {

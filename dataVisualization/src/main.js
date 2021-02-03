@@ -8,6 +8,8 @@ import axios from 'axios'
 // 将axios绑定到全局Vue原型上
 Vue.prototype.$axios = axios
 
+
+
 // 手动引入 ECharts 各模块来减小打包体积
 import 'echarts/lib/chart/bar'
 import 'echarts/lib/component/tooltip'
@@ -21,8 +23,8 @@ Vue.component('v-chart', Echarts);
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
 })

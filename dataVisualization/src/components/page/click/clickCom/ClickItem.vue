@@ -47,7 +47,8 @@ export default {
             type: "none"
           },
           formatter: function(params) {
-            return params[0].name + ": " + params[0].value;
+            // 鼠标移动，显示数据
+            // return params[0].name + ": " + params[0].value;
           }
         },
         xAxis: {
