@@ -36,10 +36,12 @@ export default {
 
         .zhihang{
             position: absolute;
-            width: 87px;
+            width: 132px;
             height: 70px;
-            background: url("../../assets/img/components/EnterpriseData/zhihang/jinshan.png") no-repeat;
-            background: contain;
+            left: 189px;
+            top: 184px;
+            background: url("../../assets/img/components/EnterpriseData/zhihang/baogangbaoshan.png") no-repeat;
+            background-size: 100%100%;
         }
     }
 </style>

@@ -29,8 +29,8 @@ export default {
 <style lang="less" scoped>
     .jinShan{
         position: absolute;
-        width: 600px;
-        height: 600px;
+        width: 800px;
+        height: 800px;
         background: url(../../assets/img/components/EnterpriseData/maps/金山.png) no-repeat;
         background-size: 100%100%;
 
@@ -38,6 +38,8 @@ export default {
             position: absolute;
             width: 87px;
             height: 70px;
+            left: 536px;
+            top: 531px;
             background: url(../../assets/img/components/EnterpriseData/zhihang/jinshan.png) no-repeat;
             background: contain;
         }

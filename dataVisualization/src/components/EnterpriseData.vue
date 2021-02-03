@@ -1,7 +1,7 @@
 <template>
   <div class="enterpriseData">
-    <div class="left_title"></div>
-    <component :is="zhihangCom"></component>
+    <div class="left_title" @click="()=>{zhihangCom = 'BaoShan'}"></div>
+    <component class="mapCom" :is="zhihangCom"></component>
     <div class="mapData">
       <z-main-data
         class="mapData-items"
@@ -381,6 +381,11 @@ export default {
   position: absolute;
   .ltwh(0px,0px,90px,640px);
   .bg(url("../assets/img/components/EnterpriseData/title.png"));
+}
+
+.mapCom{
+  position: absolute;
+  .ltwh(50px, 20px, 600px, 600px);
 }
 
 .mapData {
