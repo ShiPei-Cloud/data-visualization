@@ -1,7 +1,7 @@
 <template>
   <div class="enterpriseData">
-    <div class="left_title"></div>
-    <z-map></z-map>
+    <div class="left_title" @click="()=>{zhihangCom = 'BaoShan'}"></div>
+    <component class="mapCom" :is="zhihangCom"></component>
     <div class="mapData">
       <z-main-data
         class="mapData-items"
@@ -102,6 +102,10 @@ import zPieChart from "./EchartPie";
 import zDataHead from "./tools/DataHead";
 import zCircleData from "./tools/CircleData";
 
+//支行
+import BaoShan from './maps/BaoShan'
+import JinShan from './maps/JinShan'
+
 import fetch from "../fetch.js";
 export default {
   name: "EnterpriseData",
@@ -114,6 +118,8 @@ export default {
     zPieChart,
     zDataHead,
     zCircleData,
+    BaoShan,
+    JinShan
   },
   data() {
     return {
@@ -286,6 +292,7 @@ export default {
       },
       urlRollNum: 0,
       int: null,
+      zhihangCom:'zMap'
     };
   },
   mounted: function () {
@@ -374,6 +381,11 @@ export default {
   position: absolute;
   .ltwh(0px,0px,90px,640px);
   .bg(url("../assets/img/components/EnterpriseData/title.png"));
+}
+
+.mapCom{
+  position: absolute;
+  .ltwh(50px, 20px, 600px, 600px);
 }
 
 .mapData {

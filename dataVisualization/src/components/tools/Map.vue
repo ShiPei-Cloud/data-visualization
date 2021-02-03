@@ -21,7 +21,6 @@ export default {
 }
 .Zmap {
   position: absolute;
-  .ltwh(50px, 20px, 600px, 600px);
   .bg(url("../../assets/img/components/EnterpriseData/maps/上海.png"));
 }
 
