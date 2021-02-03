@@ -24,9 +24,10 @@ export default {
   name: "Map",
   data() {
     return {
-      active: 0
+      active:0
     };
   },
+
   methods: {
     change(index, name) {
       this.active = index;
@@ -42,7 +43,7 @@ export default {
   width: 600px;
   height: 600px;
   left: 100px;
-  top: 20;
+  top: 20px;
   background: url("../../assets/dataImage/map.png") center no-repeat;
   background-size: 100% 100%;
 }
@@ -55,9 +56,9 @@ export default {
   color: rgba(0, 252, 232, 1);
 }
 
-.active {
+/* .active {
   color: red;
-}
+} */
 
 .mapBtn1 {
   left: 335px;
@@ -77,57 +78,56 @@ export default {
 } */
 
 .mapBtn5 {
-left: 298px;
-    top: 227px;
+  left: 298px;
+  top: 227px;
 }
 .mapBtn6 {
-     left: 265px;
-    top: 252px;
+  left: 265px;
+  top: 252px;
 }
 .mapBtn7 {
-     left: 205px;
-    top: 287px;
+  left: 205px;
+  top: 287px;
 }
 .mapBtn8 {
-     left: 108px;
-    top: 318px;
+  left: 108px;
+  top: 318px;
 }
 .mapBtn9 {
-     left: 188px;
-    top: 313px;
+  left: 188px;
+  top: 313px;
 }
 .mapBtn10 {
-left: 256px;
-    top: 314px
+  left: 256px;
+  top: 314px;
 }
 .mapBtn11 {
-     left: 305px;
-    top: 305px;
-
+  left: 305px;
+  top: 305px;
 }
 .mapBtn12 {
-    left: 384px;
-    top: 338px;
+  left: 384px;
+  top: 338px;
 }
 .mapBtn13 {
-     left: 264px;
-    top: 357px;
+  left: 264px;
+  top: 357px;
 }
 
 .mapBtn15 {
-left: 231px;
-    top: 388px;
+  left: 231px;
+  top: 388px;
 }
 .mapBtn16 {
- left: 155px;
-    top: 392px;
+  left: 155px;
+  top: 392px;
 }
 .mapBtn14 {
-left: 324px;
-    top: 432px;
+  left: 324px;
+  top: 432px;
 }
 .mapBtn4 {
   left: 194px;
-    top: 474px;
+  top: 474px;
 }
 </style>

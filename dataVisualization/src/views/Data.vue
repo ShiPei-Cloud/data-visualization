@@ -1,7 +1,11 @@
 <template>
   <div class="data">
     <Title></Title>
-    <Map @quData='getQuName'></Map>
+    <!-- <component :is="comName"></component> -->
+
+    <Map v-show="show ==1" @quData='getQuName'></Map>
+    <component v-show="show !=1" :is="quZhiHang"></component>
+    <div class="fanhui" @click='show=1' v-show="show!=1">返回</div>
     <div class="left">
       <div class="eFenGou" @click='shift(1)' :class="active==1?'active':''">一分购</div>
 
@@ -38,6 +42,13 @@ import Click from "@/components/page/click/Click";
 import ZengSu from "@/components/page/zengSu/ZengSu";
 import YuE from "@/components/page/yuE/YuE";
 import Zong from "@/components/page/zong/Zong";
+import QingPu from "@/components/maps/QingPu";
+import PuTuo from "@/components/maps/PuTuo";
+import JiaDing from "@/components/maps/JiaDing";
+
+
+
+
 
 export default {
   name: "Data",
@@ -55,7 +66,9 @@ export default {
       TotalDialing: [],
 
       YearsAccumulative: [],
-      revenues: []
+      revenues: [],
+      show: 1,
+      quZhiHang:''
     };
   },
   mounted() {
@@ -84,7 +97,10 @@ export default {
     Click,
     ZengSu,
     YuE,
-    Zong
+    Zong,
+    QingPu,
+    PuTuo,
+    JiaDing
   },
   methods: {
     shift(index) {
@@ -93,29 +109,38 @@ export default {
       console.log(index);
     },
     getQuName(name) {
-      this.$axios
-        .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
-        .then(res => {
-          console.log(res.data.YearsAccumulative);
-          console.log(res.data.AnnualCumulativeTurnover);
-          this.AnnualCumulativeTurnover = res.data.AnnualCumulativeTurnover;
-          this.ClickSuccessRate = res.data.ClickSuccessRate;
-          this.ClickSuccessRate1 = res.data.ClickSuccessRate1;
-          this.GrowthRate = res.data.GrowthRate;
-          this.LoanBalance = res.data.LoanBalance;
-          this.SuccessfulDialing = res.data.SuccessfulDialing;
-          this.SuccessfulDialing1 = res.data.SuccessfulDialing1;
-          this.TotalDialing = res.data.TotalDialing;
-          this.TotalDialing1 = res.data.TotalDialing1;
-          this.YearsAccumulative = res.data.YearsAccumulative;
-          this.revenues = res.data.revenues;
-        });
+      this.show=2;
+      console.log(name)
+      if(name=='青浦区'){
+        this.quZhiHang='QingPu'
+      }else if(name=='普陀区'){
+        this.quZhiHang='PuTuo'
+      }else if(name=='嘉定区'){
+            console.log(name)
+        this.quZhiHang='JiaDing'
+      }
+      // this.$axios
+      //   .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
+      //   .then(res => {
+      //     console.log(res.data.YearsAccumulative);
+      //     console.log(res.data.AnnualCumulativeTurnover);
+      //     this.AnnualCumulativeTurnover = res.data.AnnualCumulativeTurnover;
+      //     this.ClickSuccessRate = res.data.ClickSuccessRate;
+      //     this.ClickSuccessRate1 = res.data.ClickSuccessRate1;
+      //     this.GrowthRate = res.data.GrowthRate;
+      //     this.LoanBalance = res.data.LoanBalance;
+      //     this.SuccessfulDialing = res.data.SuccessfulDialing;
+      //     this.SuccessfulDialing1 = res.data.SuccessfulDialing1;
+      //     this.TotalDialing = res.data.TotalDialing;
+      //     this.TotalDialing1 = res.data.TotalDialing1;
+      //     this.YearsAccumulative = res.data.YearsAccumulative;
+      //     this.revenues = res.data.revenues;
+      //   });
     }
   }
 };
 </script>
 <style scoped >
-
 .data {
   position: relative;
   width: 3584px !important;
@@ -124,6 +149,14 @@ export default {
   /* font-family: Gentium !important; */
   /* 修改字体 */
   /* font-family: mFont ; */
+}
+.fanhui{
+  position: absolute;
+  bottom:10px;
+  left: 600px;
+  width: 100px;
+  height: 50px;
+  background: red;
 }
 
 /* .data_success{
