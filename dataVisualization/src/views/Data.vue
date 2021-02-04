@@ -4,7 +4,7 @@
     <!-- <component :is="comName"></component> -->
 
     <Map v-show="show ==1" @quData='getQuName'></Map>
-    <component v-show="show !=1" :is="quZhiHang" @getData='getMessage'></component>
+    <component class="quZhiHang" v-show="show !=1" :is="quZhiHang" @getData='getMessage'></component>
     <div class="fanhui" @click='returnGo' v-show="show!=1">返回</div>
 
      <transition>
@@ -71,6 +71,9 @@ import HongKou from "@/components/maps/HongKou";
 import FengXian from "@/components/maps/FengXian";
 import ChongMing from "@/components/maps/ChongMing";
 import PuDong from "@/components/maps/PuDong";
+
+import BaoShan from "@/components/maps/BaoShan";
+
 
 export default {
   name: "Data",
@@ -143,7 +146,8 @@ export default {
     HongKou,
     FengXian,
     ChongMing,
-    PuDong
+    PuDong,
+    BaoShan
   },
   methods: {
     shift(index) {
@@ -178,6 +182,8 @@ export default {
         this.quZhiHang = "ChongMing";
       } else if (name == "浦东新区") {
         this.quZhiHang = "PuDong";
+      } else if (name == "宝山区") {
+        this.quZhiHang = "BaoShan"
       }
       // this.$axios
       //   .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
@@ -221,6 +227,15 @@ export default {
   /* 修改字体 */
   /* font-family: mFont ; */
 }
+
+.quZhiHang{
+  position: absolute;
+    width: 600px;
+  height: 600px;
+  left: 100px;
+  top: 20px;
+}
+
 .fanhui {
   position: absolute;
   bottom: 10px;

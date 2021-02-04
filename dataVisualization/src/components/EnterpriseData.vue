@@ -1,6 +1,6 @@
 <template>
   <div class="enterpriseData">
-    <div class="left_title" @click="()=>{zhihangCom = 'BaoShan'}"></div>
+    <div class="left_title" @click="()=>{zhihangCom = 'PuTuo'}"></div>
     <component class="mapCom" :is="zhihangCom"></component>
     <div class="mapData">
       <z-main-data
@@ -37,8 +37,8 @@
         class="barChart-items"
         :echart-bar-title="echartBarTitle"
         :bar-chart-data="userDistribution"
-        bar-chart-data-key="area"
-        bar-chart-data-value="num"
+        bar-chart-data-key="branch"
+        bar-chart-data-value="pv"
       >
       </z-bar-echart>
     </div>
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import zMap from "./tools/Map";
+import zMap from "./page/Map";
 import zMainData from "./tools/MainData";
 import zBarChart from "./BarChart";
 import zLineChart from "./EchartLine";
@@ -105,6 +105,7 @@ import zCircleData from "./tools/CircleData";
 //支行
 import BaoShan from './maps/BaoShan'
 import JinShan from './maps/JinShan'
+import PuTuo from './maps/PuTuo'
 
 import fetch from "../fetch.js";
 export default {
@@ -119,7 +120,8 @@ export default {
     zDataHead,
     zCircleData,
     BaoShan,
-    JinShan
+    JinShan,
+    PuTuo
   },
   data() {
     return {
