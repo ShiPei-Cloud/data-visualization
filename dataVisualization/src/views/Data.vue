@@ -9,17 +9,17 @@
 
     <transition>
       <div class="shuju" v-show='shuju!=1'>
-        <DataShow dataName='总拨打量' :dataNumber='fenqi.callNum'></DataShow>
-        <DataShow dataName='成功量' :dataNumber='fenqi.growth'></DataShow>
-        <DataShow dataName='点选成功率' :dataNumber='fenqi.transaction'></DataShow>
-        <DataShow dataName='递延后收入' :dataNumber='fenqi.loan'></DataShow>
-        <DataShow dataName='年累计进件数' :dataNumber='fenqi.purchases'></DataShow>
-        <DataShow dataName='年交易额' :dataNumber='fenqi.revenue'></DataShow>
-        <DataShow dataName='增速' :dataNumber='fenqi.sucmount'></DataShow>
-        <DataShow dataName='贷款余额' :dataNumber='fenqi.surate'></DataShow>
-        <DataShow dataName='总拨打量' :dataNumber='yifen.callNum'></DataShow>
-        <DataShow dataName='成功量' :dataNumber='yifen.sucmount'></DataShow>
-        <DataShow dataName='点选成功率' :dataNumber='yifen.surate'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='总拨打量' :dataNumber='fenqi.callNum'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='成功量' :dataNumber='fenqi.growth'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='点选成功率' :dataNumber='fenqi.transaction'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='递延后收入' :dataNumber='fenqi.loan'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='年累计进件数' :dataNumber='fenqi.purchases'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='年交易额' :dataNumber='fenqi.revenue'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='增速' :dataNumber='fenqi.sucmount'></DataShow>
+        <DataShow v-show="yiFenGou==1" dataName='贷款余额' :dataNumber='fenqi.surate'></DataShow>
+        <DataShow v-show="yiFenGou !=1" dataName='总拨打量' :dataNumber='yifen.callNum'></DataShow>
+        <DataShow v-show="yiFenGou !=1" dataName='成功量' :dataNumber='yifen.sucmount'></DataShow>
+        <DataShow v-show="yiFenGou !=1" dataName='点选成功率' :dataNumber='yifen.surate'></DataShow>
 
       </div>
     </transition>
@@ -113,7 +113,8 @@ export default {
       show: 1,
       quZhiHang: "",
       fenqi: {},
-      yifen: {}
+      yifen: {},
+      yiFenGou: 1
     };
   },
   mounted() {
@@ -164,6 +165,8 @@ export default {
   methods: {
     shift(index) {
       // this.$destroy('Success');
+      this.yiFenGou = index;
+      // console.log(this.yiFenGou)
       this.active = index;
       console.log(index);
     },
@@ -230,9 +233,8 @@ export default {
       //   });
     },
     getMessage(message) {
-
-      if(message.fenqi.length==0) return
-      if(message.fenqi.yifen==0) return
+      if (message.fenqi.length == 0) return;
+      if (message.fenqi.yifen == 0) return;
       this.shuju = 2;
       console.log(message);
       this.left_style.left = "812px";
@@ -283,6 +285,9 @@ export default {
   width: 116px;
   height: 630px;
   transition: all 0.3s linear;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-evenly;
 }
 
 /* .data_success{
