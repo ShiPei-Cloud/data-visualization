@@ -37,8 +37,8 @@
         class="barChart-items"
         :echart-bar-title="echartBarTitle"
         :bar-chart-data="userDistribution"
-        bar-chart-data-key="area"
-        bar-chart-data-value="num"
+        bar-chart-data-key="branch"
+        bar-chart-data-value="pv"
       >
       </z-bar-echart>
     </div>
@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import zMap from "./tools/Map";
+import zMap from "./page/Map";
 import zMainData from "./tools/MainData";
 import zBarChart from "./BarChart";
 import zLineChart from "./EchartLine";

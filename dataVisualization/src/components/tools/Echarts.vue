@@ -187,8 +187,8 @@ export default {
                 },
               },
               axisLabel: {
-                fontSize: 10,
-                rotate: 0,
+                fontSize: 9,
+                rotate: 21,
               },
               axisTick: {
                 show: false, //显示刻度
@@ -204,7 +204,7 @@ export default {
               },
               axisLabel: {
                 //坐标轴上的字体大小
-                fontSize: 13,
+                fontSize: 10,
               },
               splitLine: {
                 show: true,
