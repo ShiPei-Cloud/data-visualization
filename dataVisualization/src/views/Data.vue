@@ -4,9 +4,27 @@
     <!-- <component :is="comName"></component> -->
 
     <Map v-show="show ==1" @quData='getQuName'></Map>
-    <component v-show="show !=1" :is="quZhiHang"></component>
-    <div class="fanhui" @click='show=1' v-show="show!=1">返回</div>
-    <div class="left">
+    <component v-show="show !=1" :is="quZhiHang" @getData='getMessage'></component>
+    <div class="fanhui" @click='returnGo' v-show="show!=1">返回</div>
+
+     <transition>
+    <div class="shuju" v-show='shuju!=1'>
+      <DataShow dataName='总拨打量' :dataNumber='fenqi.callNum'></DataShow>
+      <DataShow dataName='成功量' :dataNumber='fenqi.growth'></DataShow>
+      <DataShow dataName='点选成功率' :dataNumber='fenqi.transaction'></DataShow>
+      <DataShow dataName='递延后收入' :dataNumber='fenqi.loan'></DataShow>
+      <DataShow dataName='年累计进件数' :dataNumber='fenqi.purchases'></DataShow>
+      <DataShow dataName='年交易额' :dataNumber='fenqi.revenue'></DataShow>
+      <DataShow dataName='增速' :dataNumber='fenqi.sucmount'></DataShow>
+      <DataShow dataName='贷款余额' :dataNumber='fenqi.surate'></DataShow>
+      <DataShow dataName='总拨打量' :dataNumber='yifen.callNum'></DataShow>
+      <DataShow dataName='成功量' :dataNumber='yifen.sucmount'></DataShow>
+      <DataShow dataName='点选成功率' :dataNumber='yifen.surate'></DataShow>
+
+    </div>
+     </transition>
+
+    <div class="left" :style="left_style">
       <div class="eFenGou" @click='shift(1)' :class="active==1?'active':''">一分购</div>
 
       <div class="fenQiTong" @click='shift(2)' :class="active==2?'active':''">分期通</div>
@@ -14,7 +32,7 @@
       <Zong :TotalDialing1='active==1?TotalDialing1:TotalDialing'></Zong>
       <Success class="data_success" :SuccessfulDialing1='active==1?SuccessfulDialing1:SuccessfulDialing'></Success>
     </div>
-    <div class="middle">
+    <div class="middle" :style="middle_style">
       <div class="middle_left">
 
         <Click :ClickSuccessRate1='active==1?ClickSuccessRate1:ClickSuccessRate'></Click>
@@ -25,7 +43,7 @@
         <JiaoYiE :AnnualCumulativeTurnover='AnnualCumulativeTurnover'></JiaoYiE>
       </div>
     </div>
-    <div class="right">
+    <div class="right" :style="right_style">
       <ZengSu :GrowthRate='GrowthRate'></ZengSu>
       <YuE :LoanBalance='LoanBalance'></YuE>
     </div>
@@ -34,6 +52,8 @@
 <script>
 import Title from "@/components/page/Title";
 import Map from "@/components/page/Map";
+import DataShow from "@/components/page/DataShow";
+
 import Success from "@/components/page/success/Success";
 import ShouRu from "@/components/page/shouRu/ShouRu";
 import JinJianShu from "@/components/page/jinJianShu/JinJianShu";
@@ -42,19 +62,31 @@ import Click from "@/components/page/click/Click";
 import ZengSu from "@/components/page/zengSu/ZengSu";
 import YuE from "@/components/page/yuE/YuE";
 import Zong from "@/components/page/zong/Zong";
+
 import QingPu from "@/components/maps/QingPu";
 import PuTuo from "@/components/maps/PuTuo";
 import JiaDing from "@/components/maps/JiaDing";
-
-
-
-
+import HuangPu from "@/components/maps/HuangPu";
+import HongKou from "@/components/maps/HongKou";
+import FengXian from "@/components/maps/FengXian";
+import ChongMing from "@/components/maps/ChongMing";
+import PuDong from "@/components/maps/PuDong";
 
 export default {
   name: "Data",
   data() {
     return {
       active: 1,
+
+      left_style: {
+        left: "725px"
+      },
+      middle_style: {
+        left: "1413px"
+      },
+      right_style: {
+        right: "28px"
+      },
       TotalDialing1: [],
       AnnualCumulativeTurnover: [],
       ClickSuccessRate: [],
@@ -67,8 +99,13 @@ export default {
 
       YearsAccumulative: [],
       revenues: [],
+      // 数据的显示与隐藏
+      shuju: 1,
+      // 返回键的显示与隐藏
       show: 1,
-      quZhiHang:''
+      quZhiHang: "",
+      fenqi: {},
+      yifen: {}
     };
   },
   mounted() {
@@ -90,6 +127,7 @@ export default {
   components: {
     Title,
     Map,
+    DataShow,
     Success,
     ShouRu,
     JinJianShu,
@@ -100,7 +138,12 @@ export default {
     Zong,
     QingPu,
     PuTuo,
-    JiaDing
+    JiaDing,
+    HuangPu,
+    HongKou,
+    FengXian,
+    ChongMing,
+    PuDong
   },
   methods: {
     shift(index) {
@@ -108,16 +151,33 @@ export default {
       this.active = index;
       console.log(index);
     },
+    returnGo() {
+      this.show = 1;
+      this.shuju = 1;
+      this.left_style.left = "725px";
+      this.middle_style.left = "1413px";
+      this.right_style.right = "28px";
+    },
     getQuName(name) {
-      this.show=2;
-      console.log(name)
-      if(name=='青浦区'){
-        this.quZhiHang='QingPu'
-      }else if(name=='普陀区'){
-        this.quZhiHang='PuTuo'
-      }else if(name=='嘉定区'){
-            console.log(name)
-        this.quZhiHang='JiaDing'
+      this.show = 2;
+      console.log(name);
+      if (name == "青浦区") {
+        this.quZhiHang = "QingPu";
+      } else if (name == "普陀区") {
+        this.quZhiHang = "PuTuo";
+      } else if (name == "嘉定区") {
+        console.log(name);
+        this.quZhiHang = "JiaDing";
+      } else if (name == "黄浦区") {
+        this.quZhiHang = "HuangPu";
+      } else if (name == "虹口区") {
+        this.quZhiHang = "HongKou";
+      } else if (name == "奉贤区") {
+        this.quZhiHang = "FengXian";
+      } else if (name == "崇明区") {
+        this.quZhiHang = "ChongMing";
+      } else if (name == "浦东新区") {
+        this.quZhiHang = "PuDong";
       }
       // this.$axios
       //   .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
@@ -136,6 +196,17 @@ export default {
       //     this.YearsAccumulative = res.data.YearsAccumulative;
       //     this.revenues = res.data.revenues;
       //   });
+    },
+    getMessage(message) {
+      this.shuju = 2;
+      console.log(message);
+      this.left_style.left = "812px";
+      this.middle_style.left = "1451px";
+      this.right_style.right = "0px";
+      this.fenqi = message.fenqi[0];
+      this.yifen = message.yifen[0];
+
+      // console.log(message);
     }
   }
 };
@@ -150,13 +221,23 @@ export default {
   /* 修改字体 */
   /* font-family: mFont ; */
 }
-.fanhui{
+.fanhui {
   position: absolute;
-  bottom:10px;
-  left: 600px;
+  bottom: 10px;
+  left: 540px;
   width: 100px;
   height: 50px;
   background: red;
+  z-index: 999;
+}
+
+.shuju {
+  position: absolute;
+  left: 700px;
+  top: 5px;
+  width: 116px;
+  height: 630px;
+  transition: all 0.3s linear;
 }
 
 /* .data_success{
@@ -168,8 +249,9 @@ export default {
   position: absolute;
   width: 641px;
   height: 630px;
-  left: 725px;
   top: 5px;
+  transition: all 0.3s linear;
+
   background: url("../assets/dataImage/leftBorder.png") center no-repeat;
 }
 
@@ -198,9 +280,11 @@ export default {
   position: absolute;
   width: 1432px;
   height: 630px;
-  left: 1413px;
+  /* left: 1413px;*/
   top: 5px;
   background: url("../assets/dataImage/middleBorder.png") center no-repeat;
+
+  transition: all 0.3s linear;
 }
 
 .middle_left {
@@ -223,14 +307,26 @@ export default {
   position: absolute;
   width: 702px;
   height: 630px;
-  right: 28px;
+  /* right: 28px; */
   top: 5px;
   background: url("../assets/dataImage/rightBorder.png") center no-repeat;
   /* background-size: contain; */
+
+  transition: all 0.3s linear;
 }
 
 .active {
   background: url("../assets/dataImage/active.png") center no-repeat;
   /* color:red; */
+}
+
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
 }
 </style>

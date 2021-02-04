@@ -36,6 +36,6 @@ export default {
   top: 55px;
 }
 .zong_title {
-  width: 540px;
+  width: 540px !important;
 }
 </style>

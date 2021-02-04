@@ -1,6 +1,6 @@
 <template>
   <div class="map">
-    <div class="mapBtn mapBtn1" :class="active==1?'active':''" @click="change(1,'崇明县')">崇明县</div>
+    <div class="mapBtn mapBtn1" :class="active==1?'active':''" @click="change(1,'崇明区')">崇明区</div>
     <div class="mapBtn mapBtn2" :class="active==2?'active':''" @click="change(2,'宝山区')">宝山区</div>
     <div class="mapBtn mapBtn3" :class="active==3?'active':''" @click="change(3,'嘉定区')">嘉定区</div>
     <div class="mapBtn mapBtn4" :class="active==4?'active':''" @click="change(4,'金山区')">金山区</div>
