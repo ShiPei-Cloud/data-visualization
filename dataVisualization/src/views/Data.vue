@@ -7,22 +7,22 @@
     <component class="quZhiHang" v-show="show !=1" :is="quZhiHang" @getData='getMessage'></component>
     <div class="fanhui" @click='returnGo' v-show="show!=1">返回</div>
 
-     <transition>
-    <div class="shuju" v-show='shuju!=1'>
-      <DataShow dataName='总拨打量' :dataNumber='fenqi.callNum'></DataShow>
-      <DataShow dataName='成功量' :dataNumber='fenqi.growth'></DataShow>
-      <DataShow dataName='点选成功率' :dataNumber='fenqi.transaction'></DataShow>
-      <DataShow dataName='递延后收入' :dataNumber='fenqi.loan'></DataShow>
-      <DataShow dataName='年累计进件数' :dataNumber='fenqi.purchases'></DataShow>
-      <DataShow dataName='年交易额' :dataNumber='fenqi.revenue'></DataShow>
-      <DataShow dataName='增速' :dataNumber='fenqi.sucmount'></DataShow>
-      <DataShow dataName='贷款余额' :dataNumber='fenqi.surate'></DataShow>
-      <DataShow dataName='总拨打量' :dataNumber='yifen.callNum'></DataShow>
-      <DataShow dataName='成功量' :dataNumber='yifen.sucmount'></DataShow>
-      <DataShow dataName='点选成功率' :dataNumber='yifen.surate'></DataShow>
+    <transition>
+      <div class="shuju" v-show='shuju!=1'>
+        <DataShow dataName='总拨打量' :dataNumber='fenqi.callNum'></DataShow>
+        <DataShow dataName='成功量' :dataNumber='fenqi.growth'></DataShow>
+        <DataShow dataName='点选成功率' :dataNumber='fenqi.transaction'></DataShow>
+        <DataShow dataName='递延后收入' :dataNumber='fenqi.loan'></DataShow>
+        <DataShow dataName='年累计进件数' :dataNumber='fenqi.purchases'></DataShow>
+        <DataShow dataName='年交易额' :dataNumber='fenqi.revenue'></DataShow>
+        <DataShow dataName='增速' :dataNumber='fenqi.sucmount'></DataShow>
+        <DataShow dataName='贷款余额' :dataNumber='fenqi.surate'></DataShow>
+        <DataShow dataName='总拨打量' :dataNumber='yifen.callNum'></DataShow>
+        <DataShow dataName='成功量' :dataNumber='yifen.sucmount'></DataShow>
+        <DataShow dataName='点选成功率' :dataNumber='yifen.surate'></DataShow>
 
-    </div>
-     </transition>
+      </div>
+    </transition>
 
     <div class="left" :style="left_style">
       <div class="eFenGou" @click='shift(1)' :class="active==1?'active':''">一分购</div>
@@ -63,6 +63,7 @@ import ZengSu from "@/components/page/zengSu/ZengSu";
 import YuE from "@/components/page/yuE/YuE";
 import Zong from "@/components/page/zong/Zong";
 
+
 import QingPu from "@/components/maps/QingPu";
 import PuTuo from "@/components/maps/PuTuo";
 import JiaDing from "@/components/maps/JiaDing";
@@ -71,8 +72,17 @@ import HongKou from "@/components/maps/HongKou";
 import FengXian from "@/components/maps/FengXian";
 import ChongMing from "@/components/maps/ChongMing";
 import PuDong from "@/components/maps/PuDong";
-
 import BaoShan from "@/components/maps/BaoShan";
+import JingAn from "@/components/maps/JingAn";
+import JinShan from "@/components/maps/JinShan";
+import MinHang from "@/components/maps/MinHang"; 
+import ChangNing from "@/components/maps/ChangNing";
+import YangPu from "@/components/maps/YangPu"; 
+import XuHui from "@/components/maps/XuHui";
+import SongJiang from "@/components/maps/SongJiang"; 
+
+
+
 
 
 export default {
@@ -147,7 +157,14 @@ export default {
     FengXian,
     ChongMing,
     PuDong,
-    BaoShan
+    BaoShan,
+    JingAn,
+    JinShan,
+    MinHang,
+    ChangNing,
+    YangPu,
+    XuHui,
+    SongJiang
   },
   methods: {
     shift(index) {
@@ -183,9 +200,23 @@ export default {
       } else if (name == "浦东新区") {
         this.quZhiHang = "PuDong";
       } else if (name == "宝山区") {
-        this.quZhiHang = "BaoShan"
+        this.quZhiHang = "BaoShan";
+      } else if (name == "静安区") {
+        this.quZhiHang = "JingAn";
+      } else if (name == "金山区") {
+        this.quZhiHang = "JinShan";
+      } else if (name == "闵行区") {
+        this.quZhiHang = "MinHang";
+      } else if (name == "长宁区") {
+        this.quZhiHang = "ChangNing";
+      }else if (name == "杨浦区") {
+        this.quZhiHang = "YangPu";
+      }else if (name == "徐汇区") {
+        this.quZhiHang = "XuHui";
+      }else if (name == "松江区") {
+        this.quZhiHang = "SongJiang";
       }
-      // this.$axios
+      // this.$axios  
       //   .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
       //   .then(res => {
       //     console.log(res.data.YearsAccumulative);
@@ -228,9 +259,9 @@ export default {
   /* font-family: mFont ; */
 }
 
-.quZhiHang{
+.quZhiHang {
   position: absolute;
-    width: 600px;
+  width: 600px;
   height: 600px;
   left: 100px;
   top: 20px;

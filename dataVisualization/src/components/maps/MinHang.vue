@@ -1,11 +1,12 @@
 <template>
-  <div class="baoShan">
-    <div class="zhihang" @click="zhihangClick(router,'宝钢宝山支行')"></div>
+  <div class="minhang">
+    <div class="zhihang" @click="zhihangClick(router,'闵行支行')"></div>
+
   </div>
 </template>
 <script>
 export default {
-  name: "BaoShan",
+  name: "MinHang",
   data() {
     return {
       router: ""
@@ -24,30 +25,31 @@ export default {
             this.$emit("getData", res.data);
           });
       } else {
-        console.log(name + "宝山支行");
+        console.log(name + "静安支行");
       }
     }
   }
 };
 </script>
 <style lang="less" scoped>
-.baoShan {
+.minhang {
   position: absolute;
   width: 600px;
   height: 600px;
-  background: url("../../assets/img/components/EnterpriseData/maps/宝山.png")
+  left: 100px;
+  top: 20px;
+  background: url("../../assets/img/components/EnterpriseData/maps/闵行.png")
     no-repeat;
   background-size: 100%100%;
-
   .zhihang {
     position: absolute;
-    width: 132px;
+    width: 154px;
     height: 70px;
-    left: 189px;
-    top: 184px;
-    background: url("../../assets/img/components/EnterpriseData/zhihang/baogangbaoshan.png")
+  top: 248px;
+    left: 256px;
+    background: url("../../assets/img/components/EnterpriseData/zhihang/闵行.png")
       no-repeat;
-    background-size: 100%100%;
+    background-size: contain;
   }
 }
 </style>

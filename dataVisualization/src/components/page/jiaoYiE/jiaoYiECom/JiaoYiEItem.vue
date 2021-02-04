@@ -112,7 +112,7 @@ export default {
 <style scoped>
 #myChart0 {
   position: absolute;
-  top: 30px;
+  top: 18px;
   left: -20px;
 }
 </style>

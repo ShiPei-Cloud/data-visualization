@@ -1,12 +1,12 @@
 <template>
-  <div class="jinshan">
-    <div class="zhihang zhihang1" @click="zhihangClick(router,'金山支行')"></div>
-
+  <div class="jingAn">
+    <div class="zhihang zhihang1" @click="zhihangClick(router,'静安支行')"></div>
+    <div class="zhihang zhihang2" @click="zhihangClick(router,'第六支行')"></div>
   </div>
 </template>
 <script>
 export default {
-  name: "JinShan",
+  name: "JingAn",
   data() {
     return {
       router: ""
@@ -32,22 +32,33 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.jinshan {
+.jingAn {
   position: absolute;
   width: 600px;
   height: 600px;
   left: 100px;
   top: 20px;
-  background: url("../../assets/img/components/EnterpriseData/maps/金山.png")
+  background: url("../../assets/img/components/EnterpriseData/maps/静安.png")
     no-repeat;
   background-size: 100%100%;
   .zhihang {
     position: absolute;
     width: 154px;
     height: 70px;
-       top: 367px;
-    left: 394px;
-    background: url("../../assets/img/components/EnterpriseData/zhihang/jinshan.png")
+  }
+
+  .zhihang1 {
+    top: 416px;
+    left: 263px;
+    background: url("../../assets/img/components/EnterpriseData/zhihang/jinan.png")
+      no-repeat;
+    background-size: contain;
+  }
+
+  .zhihang2 {
+    top: 324px;
+    left: 312px;
+    background: url("../../assets/img/components/EnterpriseData/zhihang/diliu.png")
       no-repeat;
     background-size: contain;
   }
