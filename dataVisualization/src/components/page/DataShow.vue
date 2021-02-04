@@ -29,6 +29,9 @@ export default {
       if (this.dataNumber.length <= 6) {
         return this.dataNumber;
       } else {
+        if(this.dataNumber[5]==='.') {
+           return this.dataNumber.substr(0, 5);
+        }
         return this.dataNumber.substr(0, 6);
       }
     }

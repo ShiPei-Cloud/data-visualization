@@ -21,7 +21,7 @@ export default {
       this.getData = [];
       this.TotalDialing1.forEach(item => {
         if (item.bank == null) {
-           this.getData.push({
+          this.getData.push({
             value: item.callNum,
             name: item.area
           });
@@ -36,13 +36,16 @@ export default {
       let myChart4 = echarts.init(document.getElementById("myChart4"));
       // 绘制图表
       myChart4.setOption({
+        tooltip: {
+          trigger: ""
+        },
         legend: {
-          // top: "bottom",
+          top: "-20%",
+          left: "",
           orient: "vertical",
           x: "left", //可设定图例在左、右、居中
           y: "center", //可设定图例在上、下、居中
-          padding: [60, 50, 0, 0],
-
+          padding: [80, 10, 20, 0],
           textStyle: {
             //图例文字的样式
             color: "rgba(0, 169, 255, 1)", //文字颜色
@@ -68,42 +71,28 @@ export default {
           "#26CCD8",
           "#9DDDFA"
         ], //手动设置每个图例的颜色
-
-        toolbox: {
-          //   show: true,
-          //   feature: {
-          //     mark: { show: true },
-          //     dataView: { show: true, readOnly: false },
-          //     restore: { show: true },
-          //     saveAsImage: { show: true }
-          //   }
-        },
         series: [
           {
-            name: "",
+            name: "访问来源",
             type: "pie",
-            radius: [60, 100],
+            radius: ["40%", "80%"],
             center: ["55%", "50%"],
-            roseType: "area",
-            itemStyle: {
-              borderRadius: 8
-            },
+            avoidLabelOverlap: false,
             label: {
+              show: false,
+              position: "center"
+            },
+            // emphasis: {
+            //   label: {
+            //     show: true,
+            //     fontSize: "40",
+            //     fontWeight: "bold"
+            //   }
+            // },
+            labelLine: {
               show: false
             },
-            emphasis: {
-              label: {
-                show: false,
-                textStyle: {
-                  //图例文字的样式
-                  color: "rgba(0, 169, 255, 1)", //文字颜色
-                  fontSize: "12px" //文字大小
-                }
-              }
-            },
-
             data: this.getData
-          
           }
         ]
       });
@@ -125,3 +114,76 @@ export default {
   left: 60px;
 }
 </style>
+
+
+
+  // legend: {
+  //         // top: "bottom",
+  //         orient: "vertical",
+  //         x: "left", //可设定图例在左、右、居中
+  //         y: "center", //可设定图例在上、下、居中
+  //         padding: [60, 50, 0, 0],
+
+  //         textStyle: {
+  //           //图例文字的样式
+  //           color: "rgba(0, 169, 255, 1)", //文字颜色
+  //           fontSize: "12px", //文字大小
+  //           borderRadius: "50%"
+  //         }
+  //       },
+  //       color: [
+  //         "#3884FC",
+  //         "#FFB769",
+  //         "#F9E264",
+  //         "#FFB769",
+  //         "#F5626E",
+  //         "#FBA998",
+  //         "#BB60B1",
+  //         "#AF87FE",
+  //         "#B034E9",
+  //         "#4F17CD",
+  //         "#171CCD",
+  //         "#023A92",
+  //         "#0F86B7",
+  //         "#049CB1",
+  //         "#26CCD8",
+  //         "#9DDDFA"
+  //       ], //手动设置每个图例的颜色
+
+  //       toolbox: {
+  //         //   show: true,
+  //         //   feature: {
+  //         //     mark: { show: true },
+  //         //     dataView: { show: true, readOnly: false },
+  //         //     restore: { show: true },
+  //         //     saveAsImage: { show: true }
+  //         //   }
+  //       },
+  //       series: [
+  //         {
+  //           name: "",
+  //           type: "pie",
+  //           radius: [60, 100],
+  //           center: ["55%", "50%"],
+  //           roseType: "area",
+  //           itemStyle: {
+  //             borderRadius: 8
+  //           },
+  //           label: {
+  //             show: false
+  //           },
+  //           emphasis: {
+  //             label: {
+  //               show: false,
+  //               textStyle: {
+  //                 //图例文字的样式
+  //                 color: "rgba(0, 169, 255, 1)", //文字颜色
+  //                 fontSize: "12px" //文字大小
+  //               }
+  //             }
+  //           },
+
+  //           data: this.getData
+          
+  //         }
+  //       ]

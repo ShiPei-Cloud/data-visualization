@@ -64,9 +64,10 @@ export default {
           });
         }
       });
-      this.paiMing.sort(function(a, b) {
-        return a - b;
-      });
+      function obj(a,b){
+        return b.growth-a.growth
+      }
+      this.paiMing.sort(obj);
 
       // dom渲染之后执行的函数
       this.$nextTick(() => {

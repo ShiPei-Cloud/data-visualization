@@ -5,7 +5,7 @@
 
     <Map v-show="show ==1" @quData='getQuName'></Map>
     <component class="quZhiHang" v-show="show !=1" :is="quZhiHang" @getData='getMessage'></component>
-    <div class="fanhui" @click='returnGo' v-show="show!=1">返回</div>
+    <div class="fanhui" @click='returnGo' v-show="show!=1"></div>
 
     <transition>
       <div class="shuju" v-show='shuju!=1'>
@@ -63,7 +63,6 @@ import ZengSu from "@/components/page/zengSu/ZengSu";
 import YuE from "@/components/page/yuE/YuE";
 import Zong from "@/components/page/zong/Zong";
 
-
 import QingPu from "@/components/maps/QingPu";
 import PuTuo from "@/components/maps/PuTuo";
 import JiaDing from "@/components/maps/JiaDing";
@@ -75,15 +74,11 @@ import PuDong from "@/components/maps/PuDong";
 import BaoShan from "@/components/maps/BaoShan";
 import JingAn from "@/components/maps/JingAn";
 import JinShan from "@/components/maps/JinShan";
-import MinHang from "@/components/maps/MinHang"; 
+import MinHang from "@/components/maps/MinHang";
 import ChangNing from "@/components/maps/ChangNing";
-import YangPu from "@/components/maps/YangPu"; 
+import YangPu from "@/components/maps/YangPu";
 import XuHui from "@/components/maps/XuHui";
-import SongJiang from "@/components/maps/SongJiang"; 
-
-
-
-
+import SongJiang from "@/components/maps/SongJiang";
 
 export default {
   name: "Data",
@@ -209,14 +204,14 @@ export default {
         this.quZhiHang = "MinHang";
       } else if (name == "长宁区") {
         this.quZhiHang = "ChangNing";
-      }else if (name == "杨浦区") {
+      } else if (name == "杨浦区") {
         this.quZhiHang = "YangPu";
-      }else if (name == "徐汇区") {
+      } else if (name == "徐汇区") {
         this.quZhiHang = "XuHui";
-      }else if (name == "松江区") {
+      } else if (name == "松江区") {
         this.quZhiHang = "SongJiang";
       }
-      // this.$axios  
+      // this.$axios
       //   .get(`http://192.168.1.136:8060/42floor/area?area=${name}`)
       //   .then(res => {
       //     console.log(res.data.YearsAccumulative);
@@ -235,6 +230,9 @@ export default {
       //   });
     },
     getMessage(message) {
+
+      if(message.fenqi.length==0) return
+      if(message.fenqi.yifen==0) return
       this.shuju = 2;
       console.log(message);
       this.left_style.left = "812px";
@@ -271,9 +269,10 @@ export default {
   position: absolute;
   bottom: 10px;
   left: 540px;
-  width: 100px;
-  height: 50px;
-  background: red;
+  width: 77px;
+  height: 77px;
+  background: url("../assets/dataImage/返回.png") center no-repeat;
+
   z-index: 999;
 }
 
