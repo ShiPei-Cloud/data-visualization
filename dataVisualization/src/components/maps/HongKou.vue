@@ -1,11 +1,11 @@
 <template>
-  <div class="qingPu">
-    <div class="zhihang" @click="zhihangClick(router,'长三角一体化示范区支行')"></div>
+  <div class="hongkou">
+    <div class="zhihang" @click="zhihangClick(router,'虹口支行')"></div>
   </div>
 </template>
 <script>
 export default {
-  name: "QingPu",
+  name: "HongKou",
   data() {
     return {
       router: ""
@@ -31,22 +31,22 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.qingPu {
+.hongkou {
   position: absolute;
   width: 600px;
   height: 600px;
   left: 100px;
   top: 20px;
-  background: url("../../assets/img/components/EnterpriseData/maps/青浦.png")
+  background: url("../../assets/img/components/EnterpriseData/maps/虹口.png")
     no-repeat;
   background-size: 100%100%;
   .zhihang {
     position: absolute;
-    top: 244px;
-    left: 200px;
-    width: 180px;
+   top: 421px;
+    left: 300px;
+    width: 100px;
     height: 70px;
-    background: url("../../assets/img/components/EnterpriseData/zhihang/青浦长三角.png")
+    background: url("../../assets/img/components/EnterpriseData/zhihang/虹口.png")
       no-repeat;
     background-size: contain;
   }

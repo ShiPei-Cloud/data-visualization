@@ -18,7 +18,12 @@ export default {
   methods: {
     zhihangClick(e, name) {
       if (e === "/data") {
-        console.log(name + "-data");
+        this.$axios
+          .get(" http://192.168.1.136:8060/42floor/area?bank=" + name)
+          .then(res => {
+            //  console.log(res.data)
+            this.$emit("getData", res.data);
+          });
       } else {
         console.log(name + "青浦支行");
       }
@@ -38,7 +43,7 @@ export default {
   background-size: 100%100%;
   .zhihang {
     position: absolute;
-       top: 299px;
+    top: 299px;
     left: 432px;
     width: 180px;
     height: 70px;
