@@ -29,8 +29,8 @@ export default {
 <style lang="less" scoped>
     .jinShan{
         position: absolute;
-        width: 800px;
-        height: 800px;
+        width: 600px;
+        height: 600px;
         background: url(../../assets/img/components/EnterpriseData/maps/金山.png) no-repeat;
         background-size: 100%100%;
 
