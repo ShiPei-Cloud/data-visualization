@@ -3,7 +3,7 @@
     <Title></Title>
     <!-- <component :is="comName"></component> -->
 
-    <Map v-show="show ==1" @quData='getQuName'></Map>
+    <Map v-show="show ==1" @quData='getQuName' class="ShngHai"></Map>
     <component class="quZhiHang" v-show="show !=1" :is="quZhiHang" @getData='getMessage'></component>
     <div class="fanhui" @click='returnGo' v-show="show!=1"></div>
 
@@ -259,6 +259,14 @@ export default {
   /* font-family: mFont ; */
 }
 
+.ShngHai {
+  position: absolute;
+  /* width: 600px;
+  height: 600px; */
+  left: 100px;
+  top: 20px;
+}
+
 .quZhiHang {
   position: absolute;
   width: 600px;
@@ -285,9 +293,9 @@ export default {
   width: 116px;
   height: 630px;
   transition: all 0.3s linear;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-evenly;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 /* .data_success{
