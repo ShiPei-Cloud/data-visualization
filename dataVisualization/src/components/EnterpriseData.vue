@@ -1,7 +1,15 @@
 <template>
   <div class="enterpriseData">
-    <div class="left_title" @click="()=>{zhihangCom = 'PuTuo'}"></div>
-    <component class="mapCom" :is="zhihangCom"></component>
+    <div
+      class="left_title"
+      @click="
+        () => {
+          zhihangCom = 'PuTuo';
+        }
+      "
+    ></div>
+    <z-map class="mapShanghai" v-if="!showQu" @quData="change"></z-map>
+    <component class="mapCom" :is="zhihangCom" v-if="showQu"></component>
     <div class="mapData">
       <z-main-data
         class="mapData-items"
@@ -103,9 +111,15 @@ import zDataHead from "./tools/DataHead";
 import zCircleData from "./tools/CircleData";
 
 //支行
-import BaoShan from './maps/BaoShan'
-import JinShan from './maps/JinShan'
-import PuTuo from './maps/PuTuo'
+import QingPu from "@/components/maps/QingPu";
+import PuTuo from "@/components/maps/PuTuo";
+import JiaDing from "@/components/maps/JiaDing";
+import HuangPu from "@/components/maps/HuangPu";
+import HongKou from "@/components/maps/HongKou";
+import FengXian from "@/components/maps/FengXian";
+import ChongMing from "@/components/maps/ChongMing";
+import PuDong from "@/components/maps/PuDong";
+import BaoShan from "@/components/maps/BaoShan";
 
 import fetch from "../fetch.js";
 export default {
@@ -119,9 +133,15 @@ export default {
     zPieChart,
     zDataHead,
     zCircleData,
+    QingPu,
+    PuTuo,
+    JiaDing,
+    HuangPu,
+    HongKou,
+    FengXian,
+    ChongMing,
+    PuDong,
     BaoShan,
-    JinShan,
-    PuTuo
   },
   data() {
     return {
@@ -294,7 +314,9 @@ export default {
       },
       urlRollNum: 0,
       int: null,
-      zhihangCom:'zMap'
+      zhihangCom: "PuTuo",
+      showQu: false,
+      quData: "",
     };
   },
   mounted: function () {
@@ -312,16 +334,16 @@ export default {
               top: "0px",
             };
           }, 2000);
-          setTimeout(()=>{
+          setTimeout(() => {
             int(_this);
-          },3000)
+          }, 3000);
         }
         th.urlRollNum -= 1;
         th.urlRoll = {
           top: th.urlRollNum + "px",
         };
       }, 50);
-    };
+    }
     int(_this);
   },
   methods: {
@@ -355,6 +377,41 @@ export default {
         this.starTemplateData = res.data.Star; //明星模板
       });
     },
+    change(quData) {
+      this.quData = quData;
+    },
+  },
+  watch: {
+    quData(val) {
+      //判断是否是区
+      switch (val) {
+        case "普陀区":
+          this.zhihangCom = "PuTuo";
+          break;
+        case "嘉定区":
+          this.zhihangCom = "JiaDing";
+          break;
+        case "黄浦区":
+          this.zhihangCom = "HuangPu";
+          break;
+        case "虹口区":
+          this.zhihangCom = "HongKou";
+          break;
+        case "奉贤区":
+          this.zhihangCom = "FengXian";
+          break;
+        case "崇明区":
+          this.zhihangCom = "ChongMing";
+          break;
+        case "浦东新区":
+          this.zhihangCom = "PuDong";
+          break;
+        case "宝山区":
+          this.zhihangCom = "BaoShan";
+          break;
+      }
+      this.showQu = !(val === ""); // 隐藏/展示 上海/区
+    },
   },
 };
 </script>
@@ -383,9 +440,14 @@ export default {
   position: absolute;
   .ltwh(0px,0px,90px,640px);
   .bg(url("../assets/img/components/EnterpriseData/title.png"));
+  z-index: 100;
+}
+.mapShanghai {
+  position: absolute;
+  .ltwh(50px, 20px, 600px, 600px);
 }
 
-.mapCom{
+.mapCom {
   position: absolute;
   .ltwh(50px, 20px, 600px, 600px);
 }

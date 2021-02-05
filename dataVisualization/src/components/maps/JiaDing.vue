@@ -37,8 +37,8 @@ export default {
   position: absolute;
   width: 600px;
   height: 600px;
-  left: 100px;
-  top: 20px;
+  // left: 100px;
+  // top: 20px;
   background: url("../../assets/img/components/EnterpriseData/maps/嘉定.png")
     no-repeat;
   background-size: 100%100%;
